@@ -11,31 +11,37 @@ class Summary extends Component {
       buriedEwws: [],
       aliveEww: "",
       birthDate: 0,
+      name: null
     }
   }
 
+  getEww = (uid) => {
+    DataService.observeEww(uid, (eww) => {
+      if (eww && eww.status === 'alive') { //compeobar status alive
+        let {birth, name} = eww
+        birth = new Date(birth.seconds * 1000)
+        this.setState({birthDate: birth.toString(), name})
+      }
+    })
+  }
+
   async componentDidMount() {
+
     const { userInfo } = this.props
+    if (userInfo) {
+      this.getEww(userInfo.uid)
+    }
+
     const buriedEwws = await DataService.getAllUserEwws(userInfo.uid);
     if (buriedEwws) {
       this.setState({ buriedEwws });
     }
-    console.log('buried state', this.state.buriedEwws)
-    let date = this.props.eww.birth.seconds*1000
-    let newDate = new Date(date)
-    let stringDate = newDate.toString()
-    const eww = this.props.eww
-    if(eww){
-      this.setState({birthDate: stringDate})
-    }    
-    console.log(stringDate, "stringDate")
-    console.log(this.state.birthDate)
   }
 
   render() {
     const { buriedEwws } = this.state
     const { userInfo } = this.props
-    const { birthDate } = this.state
+    const { birthDate, name } = this.state
     return (
       <div id="summaryDiv">
         <Link id="return-summary" to="/user" >
@@ -47,9 +53,15 @@ class Summary extends Component {
         <p>Nombre de usuario: {userInfo.name}</p>
         <p>Cuenta: {userInfo.email}</p>
         <h1 className ="summary-title">Eww actual</h1>
-        <p>Nombre: {this.props.eww.name}</p>
-        <p>Nacimiento:</p>
-        <p>{birthDate}</p>
+        <p>Nombre: {name}</p>
+        {birthDate && 
+          <React.Fragment>
+            (
+              <p>Nacimiento:</p>
+              <p>{birthDate}</p>
+            )
+          </React.Fragment>
+        }
         <h1 className ="summary-title">Ewws enterrados</h1>
         {buriedEwws.map(({id, name}) => {
             return (
