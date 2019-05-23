@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import DataService from '../services/dataService';
 import { connect } from 'react-redux';
+import StorageService from '../services/storageService';
 
 class Summary extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Summary extends Component {
       buriedEwws: [],
       aliveEww: "",
       birthDate: 0,
-      name: null
+      name: null,
+      photo:null
     }
   }
 
@@ -25,8 +27,19 @@ class Summary extends Component {
     })
   }
 
-  async componentDidMount() {
+  cargarFoto = (e) =>{
+    const file = e.target.files[0];
+    if(file){
+      StorageService.uploadFile(file,"photo-user", imageUrl => {
+          DataService.updateDetail('users',this.props.userInfo.uid,{photo:imageUrl});
+          this.setState({photo:imageUrl})
+      })
+    }
 
+
+  }
+
+  async componentDidMount() {
     const { userInfo } = this.props
     if (userInfo) {
       this.getEww(userInfo.uid)
@@ -41,7 +54,7 @@ class Summary extends Component {
   render() {
     const { buriedEwws } = this.state
     const { userInfo } = this.props
-    const { birthDate, name } = this.state
+    const { birthDate, name,photo} = this.state
     return (
       <div id="summaryDiv">
         <Link id="return-summary" to="/user" >
@@ -50,6 +63,12 @@ class Summary extends Component {
           </div>
         </Link>
         <h1 className ="summary-title">Datos del usuario</h1>
+        <div className="user-photo">
+            {photo && <img className="photoUser" src={photo} alt="usuario"></img>}
+        </div>
+        <input id="photo" type="file" onChange={this.cargarFoto}/>
+        <label id="label-photo" htmlFor="photo">Subir foto</label>
+
         <p>Nombre de usuario: {userInfo.name}</p>
         <p>Cuenta: {userInfo.email}</p>
         <h1 className ="summary-title">Eww actual</h1>
