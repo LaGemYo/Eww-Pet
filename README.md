@@ -22,7 +22,7 @@ Once logged in, one accesses the USER MENU, from where one can go directly to PL
 If it's the first time logged in or not have any live pet, a pop-up will ask for a name to create a new Eww.<br/>
 
 The game screen consists on different sections that afford us to interact with our pet:<br/>
- * The pet's screen, where you can touch Eww to make him talk and pick up the poop he does.
+ * The pet's screen, where you can touch Eww to make him talk and pick up the poop he makes.
  * The upper part, where the level bars are located that tell us what our pet needs.<br/>
  * The left menu, where there's the 'return to user menu' button and the 'music' button, which if we click it, plays music, of course. ;)<br/>
  * At the bottom, there's the 'interaction menu', which we will use for feeding our Eww, showering it and play with it.<br/>
@@ -81,7 +81,7 @@ The game screen consists on different sections that afford us to interact with o
 ## Data model structure
 
 ```
-Users: {
+users: {
 	email: string,
     ewwId: string,
     lastName: string,
@@ -89,7 +89,7 @@ Users: {
     uid: string
 }
 
-Ewws: {
+ewws: {
 	birth: Timestamp,
     cleanbar: number,
     foodbar: number,
