@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import AuthService from '../services/authService';
 import DataService from '../services/dataService';
 
-
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -91,7 +90,7 @@ export default class SignUp extends React.Component {
             <input className="input-form" type="password" name="password" value={password} onChange={this.onChangeInput} />
           </div>
           <button id="create-account-button" className="menu-button">
-          Create account
+            Create account
           </button>
           {errorMessage && <p>{errorMessage}</p>}
         </form>

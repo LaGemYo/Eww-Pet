@@ -13,34 +13,35 @@ class Summary extends Component {
       aliveEww: "",
       birthDate: 0,
       name: null,
-      photo:null
+      photo: null,
+    }
+  }
+
+
+  uploadPhoto = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      StorageService.uploadFile(file, "photo-user", imageUrl => {
+        DataService.updateDetail('users', this.props.userInfo.uid, { photo: imageUrl });
+        this.setState({ photo: imageUrl })
+      })
     }
   }
 
   getEww = (uid) => {
     DataService.observeEww(uid, (eww) => {
       if (eww && eww.status === 'alive') { //compeobar status alive
-        let {birth, name} = eww
+        let { birth, name } = eww
         birth = new Date(birth.seconds * 1000)
-        this.setState({birthDate: birth.toString(), name})
+        this.setState({ birthDate: birth.toString(), name })
       }
     })
   }
 
-  cargarFoto = (e) =>{
-    const file = e.target.files[0];
-    if(file){
-      StorageService.uploadFile(file,"photo-user", imageUrl => {
-          DataService.updateDetail('users',this.props.userInfo.uid,{photo:imageUrl});
-          this.setState({photo:imageUrl})
-      })
-    }
-
-
-  }
-
   async componentDidMount() {
+    
     const { userInfo } = this.props
+    DataService.getObjectDetail("users", userInfo.uid)
     if (userInfo) {
       this.getEww(userInfo.uid)
     }
@@ -54,7 +55,7 @@ class Summary extends Component {
   render() {
     const { buriedEwws } = this.state
     const { userInfo } = this.props
-    const { birthDate, name,photo} = this.state
+    const { birthDate, name, photo } = this.state
     return (
       <div id="summaryDiv">
         <Link id="return-summary" to="/user" >
@@ -62,36 +63,35 @@ class Summary extends Component {
             <button className="return-arrow-button" />
           </div>
         </Link>
-        <h1 className ="summary-title">Datos del usuario</h1>
+        <h1 className="summary-title">Datos del usuario</h1>
         <div className="user-photo">
-            {photo && <img className="photoUser" src={photo} alt="usuario"></img>}
+          {photo && <img className="photo-user" src={photo} alt="usuario"></img>}
         </div>
-        <input id="photo" type="file" onChange={this.cargarFoto}/>
+        <input style={{ display: photo ? "none" : "block" } }  className="input-photo" type="file" onChange={this.cargarFoto} />
         <label id="label-photo" htmlFor="photo">Subir foto</label>
-
         <p>Nombre de usuario: {userInfo.name}</p>
         <p>Cuenta: {userInfo.email}</p>
-        <h1 className ="summary-title">Eww actual</h1>
+        <h1 className="summary-title">Eww actual</h1>
         <p>Nombre: {name}</p>
-        {birthDate && 
+        {birthDate &&
           <React.Fragment>
             (
               <p>Nacimiento:</p>
-              <p>{birthDate}</p>
+            <p>{birthDate}</p>
             )
           </React.Fragment>
         }
-        <h1 className ="summary-title">Ewws enterrados</h1>
-        {buriedEwws.map(({id, name}) => {
-            return (
-              <p
-                name={name}
-                className="buriedEwws-list" 
-                key={id}>
-                {name}
-              </p>
-            )
-          })}
+        <h1 className="summary-title">Ewws enterrados</h1>
+        {buriedEwws.map(({ id, name }) => {
+          return (
+            <p
+              name={name}
+              className="buriedEwws-list"
+              key={id}>
+              {name}
+            </p>
+          )
+        })}
       </div>
     )
   }
