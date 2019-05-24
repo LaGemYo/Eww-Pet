@@ -19,7 +19,7 @@ class UserMenu extends React.Component {
       email: props.email || '',
       message: props.message || '',
       error: '',
-      visibleModal: false
+      visibleModal: false,
     }
   }
 
@@ -56,15 +56,15 @@ class UserMenu extends React.Component {
     this.props.history.push('/');
   }
 
-  onResetGame = () => {   
+  onResetGame = () => {
     const eww = this.props.eww
     eww.status = 'dead'
     DataService.updateDetail('ewws', this.props.eww.id, { status: 'dead' })
     window.location.reload()
   }
 
-
   render() {
+
     return (
       <div id="userDiv">
         <button className="menu-button" id="logout-button" onClick={this.logout}>

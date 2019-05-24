@@ -35,7 +35,7 @@ body{
         background-color: $bg-color;
         margin: 0 auto;
         width: 60vh;
-        height: 60vh;
+        height: 80vh;
     }
     #loginDiv{
         display: block;
@@ -63,6 +63,36 @@ body{
         justify-content: center;
         align-items: center;
         flex-direction: column;
+    }
+    .user-photo {
+        font-size: 4vh;
+        padding: 10px;
+        border: black solid 2px;
+        border-radius: 10px;
+        margin-top: 15px;
+        margin-bottom: 10%;
+        box-shadow: 9px 9px 9px #666;
+        cursor: pointer;
+        height: 19vh;
+        margin-top: 0;
+        margin-bottom: 2%;
+    }
+    .input-photo {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 3vh;
+        margin-left: 10%;
+        border-radius: 20px;
+        border-bottom: black solid 3px;
+        margin-bottom: 2%;
+        cursor: pointer;
+    }
+    #label-photo {
+        font-size: 3vh;
+        background-color: grey;
+        border-radius: 10px;
+        padding: 1%;
+        cursor: pointer;
     }
 
 }
