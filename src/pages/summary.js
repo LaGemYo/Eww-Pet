@@ -42,6 +42,16 @@ class Summary extends Component {
     const { buriedEwws } = this.state
     const { userInfo } = this.props
     const { birthDate, name } = this.state
+    let arrayDate = birthDate.toString().split(' ').splice(0,5)
+    let day =  arrayDate[0]
+    let month = arrayDate[1]
+    let num = arrayDate[2]
+    let year = arrayDate[3]
+    let hour = arrayDate[4]
+
+    let orderedDate = [num, month, year]
+    let finalDate = orderedDate.toString()
+
     return (
       <div id="summaryDiv">
         <Link id="return-summary" to="/user" >
@@ -58,7 +68,7 @@ class Summary extends Component {
           <React.Fragment>
             (
               <p>Nacimiento:</p>
-              <p>{birthDate}</p>
+              <p>{finalDate} a las {hour} </p>
             )
           </React.Fragment>
         }
