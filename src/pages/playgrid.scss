@@ -1,12 +1,11 @@
 
-
 h1, p {
     font-family: Lato;
     text-align: center;
 }
 
 #game-div{
-    width: 60vw;
+    width: -webkit-fill-available;
     height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
