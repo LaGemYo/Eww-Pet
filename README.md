@@ -102,5 +102,5 @@ ewws: {
 }
 ````
 
-Take a look at the project!!
+Check out my project!!
 https://ewwproject-7aafb.firebaseapp.com/
