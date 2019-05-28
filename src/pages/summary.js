@@ -11,24 +11,14 @@ class Summary extends Component {
       buriedEwws: [],
       aliveEww: "",
       birthDate: 0,
-<<<<<<< HEAD
-      name: null,
-      photo: null,
-=======
       name: null
->>>>>>> fd31e39f2ac0b01042a1c6ad74d47fcc26766817
     }
   }
 
   getEww = (uid) => {
     DataService.observeEww(uid, (eww) => {
-<<<<<<< HEAD
       if (eww && eww.status === 'alive') { //comprobar status alive
         let { birth, name } = eww
-=======
-      if (eww && eww.status === 'alive') { //compeobar status alive
-        let {birth, name} = eww
->>>>>>> fd31e39f2ac0b01042a1c6ad74d47fcc26766817
         birth = new Date(birth.seconds * 1000)
         this.setState({birthDate: birth.toString(), name})
       }
@@ -36,10 +26,6 @@ class Summary extends Component {
   }
 
   async componentDidMount() {
-<<<<<<< HEAD
-=======
-
->>>>>>> fd31e39f2ac0b01042a1c6ad74d47fcc26766817
     const { userInfo } = this.props
     if (userInfo) {
       this.getEww(userInfo.uid)
@@ -56,12 +42,10 @@ class Summary extends Component {
     const { userInfo } = this.props
     const { birthDate, name } = this.state
     let arrayDate = birthDate.toString().split(' ').splice(0,5)
-    let day =  arrayDate[0]
     let month = arrayDate[1]
     let num = arrayDate[2]
     let year = arrayDate[3]
     let hour = arrayDate[4]
-
     let orderedDate = [num, month, year]
     let finalDate = orderedDate.toString()
 
@@ -72,11 +56,7 @@ class Summary extends Component {
             <button className="return-arrow-button" />
           </div>
         </Link>
-<<<<<<< HEAD
-        <h1 className="summary-title">Datos del usuario</h1>
-=======
         <h1 className ="summary-title">Datos del usuario</h1>
->>>>>>> fd31e39f2ac0b01042a1c6ad74d47fcc26766817
         <p>Nombre de usuario: {userInfo.name}</p>
         <p>Cuenta: {userInfo.email}</p>
         <h1 className ="summary-title">Eww actual</h1>
