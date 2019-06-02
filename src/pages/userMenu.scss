@@ -1,7 +1,4 @@
-
-
 $bg-color: pink;
-
 h1{
 width: 100%;
 font-size: 20vw;
@@ -19,12 +16,10 @@ body{
     justify-content: center;
     align-content: center;
     width: 100%;
-    font-family: rancho;
-   
+    font-family: rancho;  
     .spaceDiv{
         height:100px;
     }
-
     input{
         font-size: 4vw;
         border-radius: 20px;
@@ -62,8 +57,7 @@ body{
         border-radius: 10px;
         display: flex;
         justify-content: flex-start;
-    }
-        
+    }     
     .submit-button {
         padding: 10px;
         border: black solid 2px;
@@ -77,7 +71,6 @@ body{
         display: flex;
         font-size: 2vw;
         justify-content: center;
-    
     }
     #logout-button {
         align-self: flex-start;
@@ -90,6 +83,5 @@ body{
         flex-direction: column;
         margin-bottom: 0;
     }
-
 }
 

@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple');
-
 body{
-    .user-photo-div {
-        display: flex;
-        justify-content: center;
-        width: 20vh;
-        height: 20vh;
-        align-self: center;
-    }
-    .photo-user {
-        height: 15vh;
-        width: 15vh;
-    }
     .intro {
         margin-top: 2%;
         height: 55vh;
@@ -38,13 +25,10 @@ body{
     }
     .modal-input {
         height: 40px;
-        font-size: 3vw;
+        font-size: 3vh;
     }
     .image-modal {
         width: 40%
-    }
-    .rodal-dialog {
-        box-shadow: 9px 9px 9px #666;
     }
     cursor: pointer;
     button:active {
@@ -63,7 +47,6 @@ body{
         justify-self: center;
         margin-bottom: 5vw;
         margin-top: 5vw;
-
     }
     .menu-button {
         font-family:rancho;
@@ -116,4 +99,11 @@ body{
         height: 15vh;
         width: -webkit-fill-available;
     }
+}
+.rodal-dialog {
+    box-shadow: 9px 9px 9px #666;   
+}
+.rodal-door-enter{
+    width: 45vh;
+    height: 45vh; 
 }
