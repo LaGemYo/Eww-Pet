@@ -27,9 +27,15 @@ a {
 }
 .rodal-door-enter{
     width: 45vh !important;
-    height: 80vh !important;
-}
+    height: 50vh !important;
 
+}
+@media (max-height: 550px) {
+  .rodal-door-enter{
+     height: 70vh !important;
+  }
+    
+  }
 
 
 
